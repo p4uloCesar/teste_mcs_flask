@@ -13,7 +13,7 @@
 
             <div style="margin: 20px" class="col-xs">
                 <h2>Calcular IPCA</h2>
-                <form action="range_date_info" method="POST">
+                <form action="" method="POST" enctype="multipart/form-data">
                     <div style="border: solid blue">
                         <p class="h4"> 1 - Para retornar a soma dos ultimos 12 meses, faça upload apenas do arquivo</p>
                         <p class="h4"> 2 - Para um range, informe além do arquivo, a data inicial e final</p></p>
@@ -24,7 +24,7 @@
                         <label for="file-upload" class="custom-file-upload">
                             Upload
                         </label>
-                        <input name="upload-xls" type="file"/>
+                        <input id="upload-xls" name="upload-xls" type="file"/>
 
                         <label style="margin-top: 20px"> Data Inicial
                             <input type="text" name="init-date" class="form-control dp" placeholder="Data Inicial"

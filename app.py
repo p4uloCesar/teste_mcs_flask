@@ -1,3 +1,5 @@
+import os
+
 from dateutil import parser
 from datetime import datetime
 
@@ -15,7 +17,7 @@ datepicker(app)
 @app.route('/', methods={'GET', 'POST'})
 def range_date_info():
     if request.method == 'POST':
-        xls = request.form['upload-xls']
+        xls =request.files.get('upload-xls')
         df = pd.read_excel(xls)
         df['data'] = df['data'].apply(lambda _: _ if type(_) == pd.Timestamp else datetime.strptime(_, "%d/%m/%Y"))
         sum_last_months = 0
