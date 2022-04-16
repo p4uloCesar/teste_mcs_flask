@@ -1,0 +1,49 @@
+{% extends 'bootstrap/base.html' %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+
+{% block scripts %}
+    {{ super() }}
+    {{ datepicker.loader() }} {# to load jQuery-ui #}
+    {{ datepicker.picker(id=".dp") }}
+{% endblock %}
+{% block content %}
+    <div class="container">
+
+        <div style="background-color: #ADD8E6; padding-top: 10px; border-radius: 20px; padding-bottom: 50px;">
+
+            <div style="margin: 20px" class="col-xs">
+                <h2>Calcular IPCA</h2>
+                <form action="range_date_info" method="POST">
+                    <div style="border: solid blue">
+                        <p class="h4"> 1 - Para retornar a soma dos ultimos 12 meses, faça upload apenas do arquivo</p>
+                        <p class="h4"> 2 - Para um range, informe além do arquivo, a data inicial e final</p></p>
+                        <p class="h4">EX: Data Inicial: 01/12/2019</p>
+                        <p class="h4">EX: Data Final: 01/12/2021</p>
+                    </div>
+                    <div style="margin-top: 20px">
+                        <label for="file-upload" class="custom-file-upload">
+                            Upload
+                        </label>
+                        <input name="upload-xls" type="file"/>
+
+                        <label style="margin-top: 20px"> Data Inicial
+                            <input type="text" name="init-date" class="form-control dp" placeholder="Data Inicial"
+                                   autocomplete="off" aria-describedby="basic-addon1">
+                        </label>
+                        <label style="margin-top: 20px"> Data Final
+                            <input type="text" name="final-date" class="form-control dp" placeholder="Data Final"
+                                   autocomplete="off" aria-describedby="basic-addon1">
+                        </label>
+                    </div>
+                    <div style="margin-top: 20px">
+                        <input type="submit" value="Calcular" class="btn btn-primary">
+                    </div>
+                </form>
+
+                <div style="margin-top: 20px" class="col-xs">
+                    <p class="h4"> Valor IPCA : {{ values | safe }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
